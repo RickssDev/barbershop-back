@@ -1,9 +1,7 @@
 const db = require("../models/db");
-const serviciosValidos = ['Corte Clasico', 'Afeitado', 'Corte y Afeitado', 'Barba'];
 
 exports.reservas = (req, res) => {
     const { nombre_cliente, email, fecha, hora, servicio, comentario } = req.body;
-
     if (!nombre_cliente || !email || !fecha || !hora || !servicio) {
         return res.status(400).json({ msg: "Todos los campos son obligatorios" });
     }
@@ -31,10 +29,8 @@ exports.reservas = (req, res) => {
         if (fechaHora < ahora){
                     return res.status(400).json ({msg: "No se puede reservar en una fecha pasada u hora pasada"});
                 }   
-                //validacion servicio
-        if (!serviciosValidos.includes(servicio)) {
-        return res.status(400).json({ msg: "Servicio no válido" });
-    }
+            
+        
 
     db.query(
         "INSERT INTO reservas (nombre_cliente, email, fecha, hora, servicio, comentario) VALUES (?, ?, ?, ?, ?, ?)",
