@@ -78,6 +78,26 @@ exports.obtenerReservasPorFecha = (req, res) => {
     res.status(200).json(horasOcupadas);
   });
 };
+// Eliminar reserva por ID (completar trabajo)
+exports.completarReserva = (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({ msg: "ID de reserva es requerido" });
+  }
+
+  db.query("DELETE FROM reservas WHERE id = ?", [id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ msg: "Error al eliminar la reserva", error: err });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ msg: "Reserva no encontrada" });
+    }
+
+    res.status(200).json({ msg: "Reserva completada exitosamente" });
+  });
+};
 
 
 
