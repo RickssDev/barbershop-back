@@ -5,6 +5,7 @@ const authRoutes = require("./src/routes/authRoutes");
 const reservaRoutes = require("./src/routes/reservaRoutes");
 const cortesRoutes = require("./src/routes/cortesRoutes");
 const usuariosRoutes = require("./src/routes/usuariosRoutes");
+const galeriaRoutes = require("./src/routes/galeriaRoutes");
 const path = require("path");
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use("/api/reservas", reservaRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/usuarios", usuariosRoutes);
 app.use("/api/cortes", cortesRoutes)
+app.use("/api/galeria", galeriaRoutes);
 
 const PORT = process.env.PORT || 3000;
 
