@@ -51,3 +51,19 @@ exports.login = (req, res) => {
         res.status(200).json({ msg: "Login exitoso", token, user: { id: user.id, nombre: user.nombre, email: user.email, rol: user.rol } });
     });
 };
+exports.getLoggedUser = (req, res) => {
+  const userId = req.userId;
+  if (!userId) return res.status(401).json({ msg: "No autorizado" });
+
+  db.query(
+    "SELECT id, nombre, email, rol, foto FROM usuarios WHERE id = ?",
+    [userId],
+    (err, results) => {
+      if (err) return res.status(500).json({ msg: "Error en el servidor", error: err });
+      if (results.length === 0) return res.status(404).json({ msg: "Usuario no encontrado" });
+
+      res.status(200).json(results[0]); // devuelve directamente el usuario
+    }
+  );
+};
+
