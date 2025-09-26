@@ -1,7 +1,6 @@
 const multer = require("multer");
 const path = require("path");
 
-// Carpeta donde se guardarán las fotos
 const storage = multer.diskStorage({ //guarda en disco en lugar de memoria
   destination: function (req, file, cb) {
     cb(null, "uploads/");

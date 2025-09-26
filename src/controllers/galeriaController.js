@@ -60,3 +60,19 @@ exports.eliminarFoto = (req, res) => {
     });
   });
 };
+
+exports.obtenerTotalGaleria = (req, res) => {
+  db.query("SELECT COUNT(*) AS total FROM galeria", (err, result) => {
+    if (err) return res.status(500).json({ msg: "Error al obtener total galeria", error: err });
+    res.json({ total: result[0].total });
+  });
+};
+
+exports.getTotalGaleriaValue = () => {
+  return new Promise((resolve, reject) => {
+    db.query("SELECT COUNT(*) AS total FROM galeria", (err, result) => {
+      if (err) reject(err);
+      resolve(result[0].total);
+    });
+  });
+};

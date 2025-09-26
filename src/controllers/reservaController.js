@@ -29,9 +29,6 @@ exports.reservas = (req, res) => {
         if (fechaHora < ahora){
                     return res.status(400).json ({msg: "No se puede reservar en una fecha pasada u hora pasada"});
                 }   
-            
-        
-
     db.query(
         "INSERT INTO reservas (nombre_cliente, email, fecha, hora, servicio, comentario) VALUES (?, ?, ?, ?, ?, ?)",
         [nombre_cliente, email, fecha, hora, servicio, comentario ],
@@ -96,6 +93,22 @@ exports.completarReserva = (req, res) => {
     }
 
     res.status(200).json({ msg: "Reserva completada exitosamente" });
+  });
+};
+
+exports.obtenerTotalReservas = (req, res) => {
+  db.query("SELECT COUNT(*) AS total FROM reservas", (err, result) => {
+    if (err) return res.status(500).json({ msg: "Error al obtener total reservas", error: err });
+    res.json({ total: result[0].total });
+  });
+};
+
+exports.getTotalReservasValue = () => {
+  return new Promise((resolve, reject) => {
+    db.query("SELECT COUNT(*) AS total FROM reservas", (err, result) => {
+      if (err) reject(err);
+      resolve(result[0].total);
+    });
   });
 };
 

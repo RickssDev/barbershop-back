@@ -12,5 +12,5 @@ router.post("/", upload.single("imagen"), blogController.crearPost);
 router.put("/:id", upload.single("imagen"), blogController.actualizarPost);
 router.put("/visibilidad/:id", blogController.actualizarVisibilidad);
 router.delete("/:id", blogController.eliminarPost);
-
+router.get("/total", blogController.obtenerTotalBlog);
 module.exports = router;

@@ -86,3 +86,22 @@ exports.eliminarCorte = (req, res) => {
     res.status(200).json({ msg: "Servicio eliminado correctamente" });r
   });
 };
+
+// Endpoint individual
+exports.obtenerTotalCortes = (req, res) => {
+  db.query("SELECT COUNT(*) AS total FROM cortes", (err, result) => {
+    if (err) return res.status(500).json({ msg: "Error al obtener total servicios", error: err });
+    res.json({ total: result[0].total });
+  });
+};
+
+// Para uso interno en dashboard
+exports.getTotalCortesValue = () => {
+  return new Promise((resolve, reject) => {
+    db.query("SELECT COUNT(*) AS total FROM cortes", (err, result) => {
+      if (err) reject(err);
+      resolve(result[0].total);
+    });
+  });
+};
+

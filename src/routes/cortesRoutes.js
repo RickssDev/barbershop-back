@@ -23,5 +23,6 @@ router.get("/admin", cortesController.obtenerTodos); // admin
 router.put("/toggle/:id", cortesController.toggleVisible);
 router.put("/editar/:id", upload.single("imagen"), cortesController.editarCorte);
 router.delete("/:id", cortesController.eliminarCorte);
+router.get("/total", cortesController.obtenerTotalCortes);
 
 module.exports = router;
