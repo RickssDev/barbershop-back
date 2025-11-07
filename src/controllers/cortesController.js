@@ -1,3 +1,26 @@
+/**
+ * Controlador de servicios de cortes de pelo.
+ * 
+ * Este módulo gestiona las operaciones relacionadas con los cortes de pelo, con funciones 
+ * básicas de un CRUD. Además de manejar sus numeros totales.
+ * 
+ * 
+ * @dependencies
+ * - db: conexión a la base de datos MySQL.
+ * 
+ * Funciones exportadas:
+ * - crearCorte: hace una breve verificación de campos, 
+ * para despues insertar un nuevo registro en la tabla de cortes.
+ * - obtenerVisibles: muestra unicamente los cores con bandera positiva (1).
+ * - obtenerTodos: realiza la carga de los cortes.
+ * - toggleVisible: realiza el cambio de estado (1)-(0), según sea su uso.
+ * - ediarCorte: permite editar la informacion de un servicio existente. En caso de adjuntar
+ * una nueva imagen, la reemplazará, actualizando así todos los campos y mostrando un msg de exito.
+ * - eliminarCorte: se borra el corte mediante su id y muestra un mensaje de exito.
+ * - obtenerTotalCortes: realiza una consulta sql para contar y muestrar todos los cortes en existencia.
+ * - getTotalCortesValue: permite consultar el total de cortes para usarlo en otras funciones o módulos.
+ */
+
 const path = require("path");
 const db = require("../models/db");
 
@@ -87,7 +110,6 @@ exports.eliminarCorte = (req, res) => {
   });
 };
 
-// Endpoint individual
 exports.obtenerTotalCortes = (req, res) => {
   db.query("SELECT COUNT(*) AS total FROM cortes", (err, result) => {
     if (err) return res.status(500).json({ msg: "Error al obtener total servicios", error: err });
@@ -95,7 +117,6 @@ exports.obtenerTotalCortes = (req, res) => {
   });
 };
 
-// Para uso interno en dashboard
 exports.getTotalCortesValue = () => {
   return new Promise((resolve, reject) => {
     db.query("SELECT COUNT(*) AS total FROM cortes", (err, result) => {

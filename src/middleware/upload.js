@@ -1,3 +1,11 @@
+/**
+ * Configuración de multer para la gestión de cargas de archivos.
+ * 
+ * Este módulo define la estrategia de almacenamiento en disco, 
+ * especificando la carpeta donde se guardarán los archivos agregados 
+ * y el formato de nombre único que se les asignará.
+ *
+ */
 const multer = require("multer");
 const path = require("path");
 

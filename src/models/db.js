@@ -1,3 +1,10 @@
+/**
+ * Conexión a la base de datos mysql2.
+ * 
+ * Aquí configuramos y establecemos la conexión con la base de datos,
+ * además de mostrar un mensaje de error en caso de fallar en la conexión.
+ * 
+ */
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({

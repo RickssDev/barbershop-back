@@ -1,3 +1,20 @@
+/**
+ * Controlador de autenticación de usuarios.
+ * 
+ * Este módulo gestiona las operaciones relacionadas con el registro (en caso de utilizarse),
+ * inicio de sesión y obtención de información del usuario autenticado.
+ * 
+ * @dependencies
+ * - db: conexión a la base de datos MySQL.
+ * - bcryptjs: para encriptar y comparar contraseñas.
+ * - jsonwebtoken: para generar y validar tokens JWT.
+ * 
+ * Funciones exportadas:
+ * - register: registra un nuevo usuario en la base de datos.
+ * - login: autentica un usuario y genera un token JWT.
+ * - getLoggedUser: obtiene la información del usuario actualmente autenticado.
+ */
+
 const db = require("../models/db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");

@@ -1,3 +1,10 @@
+/**
+ * Rutas del módulo de galería.
+ * 
+ * Define los endpoints relacionados con las publicaciones de imagenes,
+ * incluyendo operaciones de creación, eliminación y control de visibilidad.
+ * 
+ */
 const express = require("express");
 const router = express.Router();
 const galeriaController = require("../controllers/galeriaController");

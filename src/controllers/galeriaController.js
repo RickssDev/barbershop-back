@@ -1,6 +1,25 @@
+/**
+ * Controlador de la galería de imágenes.
+ * 
+ * Este módulo gestiona las operaciones relacionadas con las imagenes (galería), con funciones 
+ * básicas de un CRUD. Además de manejar sus numeros totales.
+ * 
+ * @dependencies
+ * - db: conexión a la base de datos MySQL.
+ * 
+ * Funciones exportadas:
+ * - obtenerGaleria: realiza la carga de las fotos, y las muestra de manera ascendente.
+ * - agregarFoto: hace una breve verificación de campo, para después insertar 
+ * un nuevo registro en la tabla de galeria.
+ * - actualizarVisibilidad: realiza el cambio de estado (1)-(0), según sea su uso.
+ * - eliminarFoto: se borra la foto mediante su id, se elimina el archivo de la carpeta "uploads" y
+ * posteriormente muestra un mensaje de exito.
+ * - obtenerTotalGaleria: realiza una consulta sql para contar y muestrar todas las fotos en existencia.
+ * - getTotalGaleriaValue: permite consultar el total de imagenes para usarlo en otras funciones o módulos.
+ */
+
 const db = require("../models/db");
 
-// Obtener todas las fotos
 exports.obtenerGaleria = (req, res) => {
   const sql = "SELECT * FROM galeria ORDER BY id ASC";
   db.query(sql, (err, results) => {
@@ -9,7 +28,6 @@ exports.obtenerGaleria = (req, res) => {
   });
 };
 
-// Agregar una nueva foto
 exports.agregarFoto = (req, res) => {
   if (!req.file) return res.status(400).json({ msg: "No se subió ninguna imagen" });
 
@@ -21,7 +39,6 @@ exports.agregarFoto = (req, res) => {
   });
 };
 
-// Actualizar visibilidad
 exports.actualizarVisibilidad = (req, res) => {
   const { id } = req.params;
   const { visible } = req.body;
@@ -32,7 +49,6 @@ exports.actualizarVisibilidad = (req, res) => {
   });
 };
 
-// Eliminar una foto
 exports.eliminarFoto = (req, res) => {
   const { id } = req.params;
 
@@ -44,7 +60,6 @@ exports.eliminarFoto = (req, res) => {
 
     const imagen = result[0].imagen;
 
-    // Borrar de la BD
     const sqlDelete = "DELETE FROM galeria WHERE id = ?";
     db.query(sqlDelete, [id], (err) => {
       if (err) return res.status(500).json({ msg: "Error al eliminar la foto", err });

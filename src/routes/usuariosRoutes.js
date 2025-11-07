@@ -1,3 +1,11 @@
+/**
+ * Rutas del módulo Blog.
+ * 
+ * Define los endpoints relacionados con los usuarios manejados por el admin,
+ * incluyendo operaciones de creación, edición, y eliminación.
+ * 
+ */
+
 const express = require("express");
 const router = express.Router();
 const usuariosController = require("../controllers/usuariosController");

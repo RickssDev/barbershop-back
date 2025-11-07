@@ -1,3 +1,10 @@
+/**
+ * Rutas del módulo dashboard.
+ * 
+ * Define los endpoints relacionados con las estadísticas del sistema,
+ * incluyendo totales generales, registro de visitas y reportes mensuales.
+ * 
+ */
 const express = require("express");
 const router = express.Router();
 const { getTotales, getVisitas, registrarVisita, getVisitasMensuales } = require("../controllers/dashController");

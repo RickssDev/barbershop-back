@@ -1,3 +1,23 @@
+/**
+ * Controlador de reservas del sistema.
+ * 
+ * Este módulo administra todas las operaciones relacionadas con las reservas de citas.
+ * Se encarga de verificar la validez de los datos ingresados (email, fecha, hora),
+ * asegurando que las reservas se realicen dentro del horario laboral y no en fechas pasadas.
+ * 
+ * @dependencies
+ * - db: conexión a la base de datos MySQL.
+ * 
+ * Funciones exportadas:
+ * - reservas: hace una breve verificación de campos, para despues 
+ * insertar un nuevo registro en la tabla de reservas.
+ * - obtenerReservas: realiza la carga de reservas y las ordena de manera ascendente
+ * - obtenerReservasPorFecha: devuelve las horas ocupadas para una fecha específica.
+ * - completarReserva: elimina una reserva existente. Dando así como finalizada/cancelada la cita.
+ * - obtenerTotalReservas: realiza una consulta sql para contar y muestrar todas las reservas en existencia.
+ * - getTotalReservasValue: permite consultar el total de reservas para usarlo en otras funciones o módulos.
+ */
+
 const db = require("../models/db");
 
 exports.reservas = (req, res) => {

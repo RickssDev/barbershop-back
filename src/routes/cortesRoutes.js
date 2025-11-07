@@ -1,3 +1,11 @@
+/**
+ * Rutas del módulo de servicios.
+ * 
+ * Define los endpoints para gestionar los cortes de cabello,
+ * incluyendo creación, edición, eliminación y control de visibilidad.
+ * 
+ */
+
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");

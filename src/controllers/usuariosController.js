@@ -1,3 +1,22 @@
+/**
+ * Controlador de los usuarios generales.
+ * 
+ * Este módulo gestiona las operaciones relacionadas con los usuarios, con funciones 
+ * básicas de un CRUD.
+ * 
+ * @dependencies
+ * - db: conexión a la base de datos MySQL.
+ * -bcryptjs: para encriptar y comparar contraseñas.
+ * 
+ * Funciones exportadas:
+ * - obtenerUsuarios: realiza la carga de todos los usuarios.
+ * - crearUsuario: hace una breve verificación de campos, después indica hacía donde se irá la foto del usuario
+ *  para después insertar un nuevo registro en la tabla de usuarios.
+ * - editarUsuario: se selecciona el usuario mediante su id, para después cargar los datos ya ingresados,
+ * posterior a eso, en caso de actualizarse, la password seguirá siendo hash, y la foto se irá a uploads.
+ * - eliminarUsuario: se borra el usuario mediante su id, tras el éxito, muestra un mensaje de satisfactorio.
+ */
+
 const db = require("../models/db");
 const bcrypt = require("bcryptjs");
 
@@ -47,7 +66,6 @@ exports.editarUsuario = (req, res) => {
     const nuevaPassword = password ? bcrypt.hashSync(password, 10) : usuarioActual.password;
     const nuevaFoto = req.file ? `/uploads/${req.file.filename}` : usuarioActual.foto;
 
-    // Actualizamos
     db.query(
       "UPDATE usuarios SET nombre=?, email=?, password=?, rol=?, foto=? WHERE id=?",
       [nombre, email, nuevaPassword, rol, nuevaFoto, id],

@@ -1,3 +1,11 @@
+/**
+ * Rutas del módulo de autentificador.
+ * 
+ * Define los endpoints relacionados con los usuarios.
+ * incluyendo registro, login y verificación.
+ * 
+ */
+
 const express = require("express");
 const router = express.Router();
 const { register, login, getLoggedUser } = require("../controllers/authController");

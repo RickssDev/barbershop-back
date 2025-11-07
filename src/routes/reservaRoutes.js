@@ -1,3 +1,11 @@
+/**
+ * Rutas del módulo de reservas.
+ * 
+ * Define los endpoints relacionados con las citas/reservas en el sistema,
+ * incluyendo operaciones de verificación de fechas y sistema de confirmación/cancelación de citas.
+ * 
+ */
+
 const express = require("express");
 const router = express.Router();
 const reservaController = require("../controllers/reservaController");

@@ -1,3 +1,10 @@
+/**
+ * Punto de entrada principal del servidor.
+ * 
+ * Aquí configuramos la aplicación Express, iniciamos los middlewares globales,
+ * registramos las rutas de la API y levantamos el servidor.
+ * 
+ */
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -9,10 +16,10 @@ const galeriaRoutes = require("./src/routes/galeriaRoutes");
 const blogRoutes = require("./src/routes/blogRoutes");
 const dashRoutes= require("./src/routes/dashRoutes");
 const path = require("path");
-
+const app = express();
 
 dotenv.config();
-const app = express();
+
 //middlewares
 app.use(cors());
 app.use(express.json());

@@ -1,3 +1,25 @@
+/**
+ * Controlador de blogs.
+ * 
+ * Este módulo gestiona las operaciones relacionadas con los blogs, con funciones
+ * básicas de un crud. Además de manejar sus numeros totales.
+ * 
+ * 
+ * @dependencies
+ * - db: conexión a la base de datos MySQL.
+ * 
+ * Funciones exportadas:
+ * - obtenerVisibles: muestra unicamente los post con bandera positiva (1).
+ * - obtenerTodos: realiza la carga de los posts.
+ * - crearPost: inserta un nuevo registro en la tabla blog. Además de, si se adjunta una imagen, 
+ * guarda el nombre del archivo.
+ * - actualizarPost: actualiza los campos mencionados, incluyendo la imagen si es actualizada.
+ * - eliminarPost: se borra el post mediante su id y muestra un mensaje de exito.
+ * - actualizarVisibilidad: realiza el cambio de estado (1)-(0), según sea su uso.
+ * - obtenerTotalBlog: realiza una consulta sql para contar y muestrar todos los post en existencia.
+ * - getTotalBlogValue: permite consultar el total de posts para usarlo en otras funciones o módulos.
+ */
+
 const db = require("../models/db");
 
 exports.obtenerVisibles = (req, res) => {

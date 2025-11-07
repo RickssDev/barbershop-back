@@ -1,3 +1,10 @@
+/**
+ * Middleware para verificar la validez del/los token.
+ * 
+ * Este middleware protege las rutas que requieren autenticación.
+ * Verifica la validez del token enviado por el cliente
+ * antes de permitir el acceso a rutas protegidas.
+ */
 const jwt = require("jsonwebtoken");
 
 exports.verifyToken = (req, res, next) => {
@@ -13,7 +20,7 @@ exports.verifyToken = (req, res, next) => {
   } catch (err) {
     console.error("Error JWT:", err);
 
-    // Detecta si el token expiró
+    // detecta si el token expiró
     if (err.name === "TokenExpiredError") {
       return res.status(401).json({ msg: "Sesión expirada" });
     }

@@ -1,3 +1,10 @@
+/**
+ * Rutas del módulo de Blogs.
+ * 
+ * Define los endpoints relacionados con las publicaciones del blog,
+ * incluyendo operaciones de creación, edición, eliminación y control de visibilidad.
+ * 
+ */
 const express = require("express");
 const router = express.Router();
 const blogController = require("../controllers/blogController");
